@@ -1,36 +1,3 @@
-/* const url = `https://japceibal.github.io/emercado-api/cats_products/${localStorage.getItem("catID")}.json`;
-let productsArray = [];
-
-fetch(url)
-.then(function(respuesta) {
-    return respuesta.json()
-})
-.then(function(datos) {
-    productsArray = datos.products;
-    let divListaProducts = document.getElementById('container');
-    let htmlContentToAppend = '';
-    for (let i = 0; i < productsArray.length; i++) {
-        htmlContentToAppend += `
-    <div onclick="setCatID(${productsArray[i].id})" class="list-group-item list-group-item-action cursor-active">
-    <div class="row">
-        <div class="col-3">
-            <img src="${productsArray[i].image}" alt="${productsArray[i].description}" class="img-thumbnail">
-        </div>
-        <div class="col">
-                <div class="d-flex w-100 justify-content-between">
-                    <h4 class="mb-1">${productsArray[i].name+"-"+productsArray[i].cost}</h4>
-                    <small class="text-muted">${productsArray[i].soldCount} artículos</small>
-                </div>
-                <p class="mb-1">${productsArray[i].description}</p>
-            </div>
-        </div>
-    </div>
-        `; 
-    } 
-    divListaProducts.innerHTML += htmlContentToAppend;  
-    });
-     */
-
 const ORDER_ASC_BY_PRICE = "AZ";
 const ORDER_DESC_BY_PRICE = "ZA";
 const ORDER_BY_PROD_REL = "Cant.";
@@ -77,7 +44,7 @@ function showCategoriesList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(productsArray.cost) <= maxCount))){
 
             htmlContentToAppend += `
-            <div onclick="setCatID(${productsArray.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="ingresarAProducto(${productsArray.id})" class="list-group-item list-group-item-action cursor-active">
             <div class="row">
                 <div class="col-3">
                     <img src="${productsArray.image}" alt="${productsArray.description}" class="img-thumbnail">
@@ -172,3 +139,9 @@ document.addEventListener("DOMContentLoaded", function(e){
     });
 });
 console.log(currentCategoriesArray)
+
+function ingresarAProducto(id){
+    localStorage.setItem('producto', id);
+    window.location.href = `product-info.html`
+    
+}
