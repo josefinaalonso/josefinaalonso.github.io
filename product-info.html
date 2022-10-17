@@ -23,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav w-100 justify-content-between">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="home.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="categories.html">Categorías</a>
@@ -31,14 +31,19 @@
           <li class="nav-item">
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="sell.html" id="usuarioitem"></a>
-          </li>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="usuarioitem" data-bs-toggle="dropdown" aria-expanded="false">   
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
+              <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+              <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+            </ul>
+          </div>
         </ul>
       </div>
     </div>
-  </nav>
-  <main>
+  </nav> 
     <div class="container" id="divinfoproducto">
     </div>
     <div class="container" id="divinfocomentario">
@@ -48,18 +53,19 @@
       <span id="starfour"></span>
       <span id="starfive"></span>
     </div>
-    <h4 style="margin-left:125px;"class="mb-3">Comentar</h4>
-    <div>
-      <form class="needs-validation" id="coments" style="margin-left: 125px;">
+    
+    <div id="formularioComentar"> 
+      <h4 style="font-family: 'Raleway', serif !important;">Comentar</h4>
+      <form class="needs-validation" id="coments">
         <div class="row">
           <div class="col-md-6 mb-3">
             <label for="opinion">Tu opinión:</label>
-            <input type="text" class="form-control" id="opinion" value="" name="productName"  style="width : 800px; heigth : 10000px">
+            <input type="text" class="form-control" id="opinion" value="" name="productName" >
           </div>
         </div>
         <div class="col-md-4 mb-3">
           <label for="puntuacion">Tu puntuación:</label>
-          <select name="puntuacion" class="form-select custom-select d-block w-100" id="puntuacion" required  style="width : 50px;">
+          <select name="puntuacion" class="form-select custom-select d-block w-100" id="puntuacion" required>
             <option value="" hidden selected>1</option>
             <option>1</option>
             <option>2</option>
@@ -72,6 +78,8 @@
           <input type="button" value="Enviar" class="btn btn-primary btn-lg" id="btncoment">
         </div>
       </form>
+    </div>
+    <div id="productosrelacionados">
     </div>
   </main>
   <footer class="text-muted">

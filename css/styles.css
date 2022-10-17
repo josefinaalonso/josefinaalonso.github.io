@@ -184,6 +184,7 @@ a.custom-card:hover {
   color: inherit;
   text-decoration: inherit;
 }
+/* Estilo para las estrellas del score de productos*/
 
 .checked {
   color: orange;
@@ -226,4 +227,51 @@ a.custom-card:hover {
 }
 .attribution:hover {
   color: #1fa67a;
+}
+
+.navbar .nav-item:not(:last-child) {
+  margin-right: 35px;
+}
+
+.dropdown-toggle::after {
+   transition: transform 0.15s linear; 
+}
+
+.show.dropdown .dropdown-toggle::after {
+  transform: translateY(3px);
+}
+
+.dropdown-menu {
+  margin-top: 0;
+}
+ 
+#carouselExampleIndicators{
+  width: 500px;
+}
+#album{
+  width: 100%;
+  height: 3%;
+  margin-top: 50px;
+  align-items: center;
+}
+#elementoalbumuno{
+  margin-left: 0%;
+  width: 30%;
+  height: 20%;
+  
+}
+#elementoalbumdos{
+  width: 30%;
+  height: 20%;
+  
+}
+#formularioComentar{
+  margin-left: 9%;
+}
+#opinion{
+  width: 600px;
+  height: 100px;
+}
+#puntuacion{
+  height: 40px;
 }

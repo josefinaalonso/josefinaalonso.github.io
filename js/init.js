@@ -44,3 +44,4 @@ let getJSONData = function(url){
 let nombreDeUsuario = JSON.parse(localStorage.getItem('usuario'))
 document.getElementById('usuarioitem').innerHTML += nombreDeUsuario;
 console.log(nombreDeUsuario)
+
