@@ -32,7 +32,7 @@ function showInfoProduct() {
     <hr>
     <div>
     <h2><b style="font-size:15px;">Precio</b></h2>
-    <p>USD ${product.cost}.</p>   
+    <p>${product.currency} ${product.cost}.</p>   
     </div> 
     <div>
     <h2><b style="font-size:15px;">Descripción</b></h2>

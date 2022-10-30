@@ -43,62 +43,123 @@
       </div>
     </div>
   </nav>
-    <div class="container">
-      <table class="table">
-        <thead>
-            <tr>
-                 <th scope="col"></th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Costo</th>
-                <th scope="col">Cantidad</th>
-                <th scope="col">Subtotal</th>
-            </tr>
-        </thead>
-        <tbody id="cart"></tbody>
-        <tbody id="cartproduct"></tbody>
-      </table> 
+  <div class="container">
+    <div class="text-center p-4">
+      <h2>Carrito de compras</h2>
     </div>
-    <form class="needs-validation" style="margin-left: 100px;"id="sell-info">
-      <h5 class="mb-3">Tipo de envío</h5>
-      <div class="d-block my-3">
-        <div class="custom-control custom-radio">
-          <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-          <label class="custom-control-label" for="goldradio">Premium 2 a 5 días (15%))</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="premiumradio">Express 5 a 8 días (7%)</label>
-        </div>
-        <div class="custom-control custom-radio">
-          <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-          <label class="custom-control-label" for="standardradio">Standard 12 a 15 días (5%)</label>
-        </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-12 order-md-12">
+        <h4 class="mb-3">Artículos a comprar</h4>
+        <form class="needs-validation" id="cart-info">
+          <div class="row">
+            <div class="col-md-12 mb-12">
+                <div class="container">
+                    <table class="table">
+                      <thead>
+                          <tr>
+                              <th scope="col"></th>
+                              <th scope="col">Nombre</th>
+                              <th scope="col">Costo</th>
+                              <th scope="col">Cantidad</th>
+                              <th scope="col">Subtotal</th>
+                          </tr>
+                      </thead>
+                      <tbody id="cart"></tbody>
+                      <tbody id="cartproduct"></tbody>
+                    </table> 
+                  </div>
+              <div class="invalid-feedback">
+                Debes elegir por lo menos un artículo.
+              </div>
+            </div>
+          </div>
+        
+          <hr class="mb-12">
+          <h5 class="mb-3">Tipo de envío</h5>
+          <div class="d-block my-3" id="radioShipping">
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="shippingType" type="radio" class="custom-control-input">
+              <label class="custom-control-label" for="premiumradio">Premium 2 a 5 días (15%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="expressradio" name="shippingType"  type="radio" class="custom-control-input">
+              <label class="custom-control-label" for="expressradio">Express 5 a 8 días (7%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="standardradio" name="shippingType"  type="radio" class="custom-control-input">
+              <label class="custom-control-label" for="standardradio">Standard 12 a 15 días (5%)</label>
+             <div class="invalid-feedback">
+              Debe ingresar un tipo de envío.
+            </div>
+          </div>
+           
+            </div>
+          <hr>
+          <div class="row justify-content-md-center">
+            <div class="col-md-12 order-md-12">
+              <h4 class="mb-3">Dirección de envío</h4>
+                <div class="row">
+                  <div class="col-md-12 mb-12">
+                    <label for="adress-street">Calle</label>
+                    <input type="text" class="form-control" id="adressstreet" value="" name="adress">
+                    <div class="invalid-feedback">
+                      Debe ingresar una calle.
+                    </div>
+                    <div class="col-md-6 mb-6">
+                        <label for="adress-number">Numero</label>
+                        <input type="number" class="form-control" id="adressnumber" value="" name="adress">
+                        <div class="invalid-feedback">
+                          Debe ingresar un número.
+                        </div>
+                  </div>
+                  <div class="col-md-6 mb-6">
+                    <label for="adress-corner">Esquina</label>
+                    <input type="text" class="form-control" id="adresscorner" value="" name="adress">
+                    <div class="invalid-feedback">
+                      Debe ingresar una esquina.
+                    </div>
+                </div>
+                <hr>
+          <h4 class="mb-3">Costos</h4>
+          <ul class="list-group mb-12">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted">Costo unitario del producto por cantidad</small>
+              </div>
+              <span class="text-muted" id="cartCost"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo de envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="shippingCost"></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong id="totalCostCart"></strong>
+            </li>
+          </ul>
+          <hr class="mb-4">
+          <h5 class="mb-3">Forma de pago</h5>
+          <div class="d-block my-3">
+            <div class="row">
+              <button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+              data-bs-target="#cartModal" id="checkbox">Seleccionar</button>
+              <div class="text-danger small mt-1 visually-hidden" id="checkAlert">
+                Debe seleccionar una forma de pago.
+            </div>
+            </div>
+          </div>
+          <hr class="mb-4">
+          <div class="mb-4">
+          <button class="btn btn-primary" type="submit" id="submit">Finalizar compra</button>
+          </div>
+        </form>
       </div>
-      <h5 class="mb-3">Dirección de envío</h5>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="productName">Calle</label>
-          <input type="text" class="form-control" id="productName" value="" name="productName">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3 mb-3">
-          <label for="productName">Número</label>
-          <input type="text" class="form-control" id="productName" value="" name="productName">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <label for="productName">Esquina</label>
-          <input type="text" class="form-control" id="productName" value="" name="productName">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <input style="margin-left: 10%; width:100px;" type="button" class="btn btn-success" id="btncompracarrito" value="Comprar">
-        </div>
-      </div>
-    </form>
+    </div>
+  </div>
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -110,6 +171,55 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="modal fade" tabindex="-1" role="dialog" id="cartModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forma de pago</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form>
+            <div>
+              <input type="radio" name="payType" value="creditCard" id="creditCard">Tarjeta de crédito</input>
+              <div class="text-danger small mt-1 visually-hidden" id="checkAlert">
+                Debe seleccionar una forma de pago.
+            </div>
+              <hr>
+              <label for="cardNumber"  class="col-md-12 mb-12" >Número de tarjeta</label>
+              <input type="number" id="cardNumber" class="form-control">
+              <label for="securityNumber"  class="col-md-12 mb-12">Código de seguridad</label>
+              <input type="number" id="securityNumber" class="form-control">
+              <label for="cardExpiration"  class="col-md-12 mb-12" >Vencimiento (MM/AA)</label>
+              <input type="text" id="cardExpiration" class="form-control">
+            </div>         
+            <br>
+            <br>
+            <div>
+              <input type="radio" name="payType" value="transfer" id="transfer" class="text-primary">Transferencia bancaria </div>
+              <div class="text-danger small mt-1 visually-hidden" id="checkAlert">
+                Debe seleccionar una forma de pago.
+            </div>
+              <hr>
+              <label for="accountNumber"  class="col-md-12 mb-12" >Número de cuenta</label>
+              <input type="number" id="accountNumber" class="form-control" disabled>
+            </div>
+            </form>
+          </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 mt-2 translate-middle-x visually-hidden" role="alert" id="good">
+      <div class="alert-heading">
+          <h4>¡Felicitaciones!</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <p>Has comprado con éxito.</p>
+  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
