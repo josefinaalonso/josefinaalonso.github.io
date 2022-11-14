@@ -45,7 +45,8 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="usuarioitem" data-bs-toggle="dropdown" aria-expanded="false">   
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="usuarioitem" data-bs-toggle="dropdown"
+              aria-expanded="false">
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
@@ -58,10 +59,68 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 order-md-1">
+        <div class="text-left p-4">
+          <h2>Perfil</h2>
+          <img src="img/perfil.png" width="50px" id="img">
+        </div>
+        <hr class="mb-4">
+        <form class="needs-validation" id="profile-info">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userName">Nombre*</label>
+              <input type="text" class="form-control" id="userName" value="" name="userName">
+              <div class="invalid-feedback">
+                Ingresa un nombre
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="secondUserName">Segundo Nombre</label>
+              <input type="text" class="form-control" id="secondUserName" value="" name="secondUserName">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userSurname">Apellido*</label>
+              <input type="text" class="form-control" id="userSurname" value="" name="userSurname">
+              <div class="invalid-feedback">
+                Ingresa un apellido
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="secondUserSurname">Segundo Apellido</label>
+              <input type="text" class="form-control" id="secondUserSurname" value="" name="secondUserSurname">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="userEmail">Email*</label>
+              <input type="text" class="form-control" id="userEmail" value="" name="userEmail">
+              <div class="invalid-feedback">
+                Ingresa un email
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="userNumber">Teléfono de contacto</label>
+              <input type="number" class="form-control" id="userNumber" value="" name="userNumber">
+            </div>
+          </div>
+          <hr class="mb-4">
+          <button class="btn btn-primary btn-lg" type="submit">Guardar cambios</button>
+        </form>
       </div>
+    </div>
+    <div
+      class="alert alert-success alert-dismissible fade show position-fixed top-0 start-50 mt-2 translate-middle-x visually-hidden"
+      role="alert" id="good">
+      <div class="alert-heading">
+        <h4>¡Felicitaciones!</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <p>Tus datos se han guardado con éxito.</p>
+    </div>
     </div>
   </main>
   <footer class="text-muted">
