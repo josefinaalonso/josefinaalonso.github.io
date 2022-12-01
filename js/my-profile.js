@@ -1,13 +1,17 @@
-var userName = JSON.parse(localStorage.getItem('userName'))
+//*Declaro las variables necesarios
+
+var userName = JSON.parse(localStorage.getItem('userName'));
 var userSurname = JSON.parse(localStorage.getItem('userSurname'));
 var email = JSON.parse(localStorage.getItem('usuario'));
 //////////////////////////////////////////
-var inputUserName = document.getElementById('userName')
-var inputUserSurname = document.getElementById('userSurname')
-var inputemail = document.getElementById('userEmail')
+var inputUserName = document.getElementById('userName');
+var inputUserSurname = document.getElementById('userSurname');
+var inputemail = document.getElementById('userEmail');
+var inputImage = document.getElementById('userImage');
 //////////////////////////////////////////
 var form = document.getElementById("profile-info");
 
+//*Evento para conservar los datos ya ingresados por el usuario
 
 window.addEventListener('DOMContentLoaded',
     function (event) {
@@ -20,9 +24,15 @@ window.addEventListener('DOMContentLoaded',
         if (email != "") {
             inputemail.value = email
         };
+        if (inputImage != "") {
+            const recentImage = localStorage.getItem('recent-image');
+            if (recentImage) {
+                document.querySelector("#img").setAttribute("src", recentImage)
+            }
+        };
     });
 
-
+//*Función para la validación de formulario mediante boostrap
 
 function validField(ok, field) {
     if (ok) {
@@ -33,6 +43,8 @@ function validField(ok, field) {
         document.getElementById(`${field}`).classList.add('is-invalid');
     };
 }
+
+//*Evento para la validación de formulario
 
 form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -53,12 +65,17 @@ form.addEventListener("submit", function (e) {
         email = [];
         email.push(inputemail.value)
         localStorage.setItem('usuario', JSON.stringify(email))
-        
-    };
 
+    };
     if (inputUserName.value != "" && inputUserSurname.value != "" && inputemail.value != "") {
         document.getElementById("good").classList.remove('visually-hidden');
     }
 });
 
-
+document.querySelector("#userImage").addEventListener('change', function () {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+        localStorage.setItem('recent-image', reader.result);
+    })
+    reader.readAsDataURL(this.files[0]);
+})

@@ -1,12 +1,20 @@
-//*Defino constantes y arreglos vacíos necesarios
+
+//*Declaro constantes, variables y arreglos  necesarios
 
 const urlProduct = `https://japceibal.github.io/emercado-api/products/${localStorage.getItem("producto")}.json`
 const urlComents = `https://japceibal.github.io/emercado-api/products_comments/${localStorage.getItem("producto")}.json`;
+////////////////////////////////////////////////////////////////////////////
 let product = [];
 let coments = [];
+////////////////////////////////////////////////////////////////////////////
+let inputTextComentary = document.getElementById("opinion");
+let inputScoreComentary = document.getElementById("puntuacion");
+let botonEnviarComentario = document.getElementById("btncoment");
+////////////////////////////////////////////////////////////////////////////
+var today = new Date();
+var now = today.toLocaleString();
 
-
-//*Peticion fetch que consigue la información de producto de la api y la muestra mediante las funciones 
+//*Peticion fetch que obtiene la información de productos de la api 
 
 fetch(urlProduct)
   .then(function (respuesta) {
@@ -18,7 +26,7 @@ fetch(urlProduct)
     showRelatedProducts();
   });
 
-//*Función que me agrega al elemento html con id=divinfoproducto la información que quiero mostrar de la api que está definida más arriba
+//*Función que me procesa la informacón de la api y la agrega al html
 
 function showInfoProduct() {
 
@@ -123,7 +131,7 @@ function showRelatedProducts() {
   divproductosrelacionados.innerHTML += htmlContentToAppend;
 }
 
-//*Petición fetch para utilizar y mostrar la información de la api de comentarios
+//*Peticion fetch que obtiene la información de comentarios de la api 
 
 fetch(urlComents)
   .then(function (response) {
@@ -132,6 +140,7 @@ fetch(urlComents)
   .then(function (data) {
     coments = data;
     showComentaries(coments);
+    addComentary(inputScoreComentary, inputTextComentary);
 
   });
 
@@ -215,7 +224,7 @@ function showComentaries(array) {
   divinfocomentario.innerHTML += htmlContentToAppend;
 };
 
-//*Función para redirigirme a la página del producto relacionado una vez que haga click 
+//*Función para redirigirme al html del producto relacionado una vez que haga click 
 
 function ingresarAProductoRelacionado(id) {
   localStorage.setItem('producto', id);
@@ -223,3 +232,76 @@ function ingresarAProductoRelacionado(id) {
 
 }
 
+//*Función para poder agregar un comentario
+
+function addComentary(puntaje, comentario) {
+  botonEnviarComentario.addEventListener('click', function (evento) {
+    htmlContentToAppend = '';
+    htmlContentToAppend += `
+    <ul class="list-group mb-3">
+        <li class="list-group-item d-flex justify-content-between lh-condensed">
+            <div>
+                <h6 id="encabezado" class="my-0">
+                    <b>${JSON.parse(localStorage.getItem('usuario'))}</b>
+                    <span class="text-muted" id="comissionText">-</span>
+                    ${now}
+                    <span class="text-muted" id="comissionText">-</span>`
+
+    //*Condicional para formato de estrellas
+
+    if (puntaje.value == 5) {
+      htmlContentToAppend +=
+        `<span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>`
+    };
+    if (puntaje.value == 4) {
+      htmlContentToAppend +=
+        `<span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>`
+    };
+    if (puntaje.value == 3) {
+      htmlContentToAppend += `<span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>`
+    };
+
+    if (puntaje.value == 2) {
+      htmlContentToAppend += `<span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>`
+    };
+    if (puntaje.value == 1) {
+      htmlContentToAppend += `<span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>`
+    };
+    if (puntaje.value == 0) {
+      htmlContentToAppend += `<span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>`
+    };
+    htmlContentToAppend += `
+                </h6>
+              <td>
+          </td>
+                <small class="text-muted">${comentario.value}</small>
+            </div>
+        </li>
+    </ul>`;
+    divinfocomentario.innerHTML += htmlContentToAppend;
+  })
+};

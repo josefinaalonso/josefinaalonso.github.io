@@ -1,10 +1,15 @@
+//*Declaro constantes, variables y arreglos  necesarios
 const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_NAME = "ZA";
 const ORDER_BY_PROD_COUNT = "Cant.";
+///////////////////////////////////////////////
 let currentCategoriesArray = [];
 let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
+//////////////////////////////////////////////
+
+//*Función para ordenar el arreglo según criterio alfabético y de costo
 
 function sortCategories(criteria, array) {
     let result = [];
@@ -34,10 +39,14 @@ function sortCategories(criteria, array) {
     return result;
 }
 
+//*Función para redirigir a la categoría que el usuario seleccione
+
 function setCatID(id) {
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
+
+//*Función para agregar las categorías al html
 
 function showCategoriesList() {
 
@@ -70,6 +79,8 @@ function showCategoriesList() {
     }
 }
 
+//*Función para ordenar y mostrar las categorías en el html
+
 function sortAndShowCategories(sortCriteria, categoriesArray) {
     currentSortCriteria = sortCriteria;
 
@@ -86,6 +97,9 @@ function sortAndShowCategories(sortCriteria, categoriesArray) {
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
+
+//*Eventos para ordenar y mostrar las categorías en el html
+
 document.addEventListener("DOMContentLoaded", function (e) {
     getJSONData(CATEGORIES_URL).then(function (resultObj) {
         if (resultObj.status === "ok") {
